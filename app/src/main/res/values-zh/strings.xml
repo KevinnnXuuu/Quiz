@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_main_false">否</string>
+    <string name="button_main_true">是</string>
+    <string name="app_name">测验</string>
+</resources>
