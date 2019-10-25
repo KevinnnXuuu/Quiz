@@ -1,12 +1,16 @@
 package com.example.quiz;
 
+import android.widget.Toast;
+
 import java.util.List;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class Quiz {
     private int currentQuestion;
     private List<Question> questions;
-    private int score;
+    int score = 0;
 
     public Quiz (List<Question> questionList){
         questions = questionList;
@@ -17,23 +21,35 @@ public class Quiz {
     }
 
     public boolean hasMoreQs() {
-        return (currentQuestion != questions.size());
+        return (currentQuestion != questions.size()-2);
     }
 
-    public void checkAnswer(boolean response){
+    public boolean checkAnswer(boolean response){
         if (response == questions.get(currentQuestion).getAnswer()){
             score++;
+            return true;
+        }
+        else{
+            return false;
         }
 
     }
 
     public Question nextQuestion() {
-        currentQuestion =+ 1;
+        currentQuestion++;
         return questions.get(currentQuestion);
 
     }
 
     public int getCurrentQuestion() {
         return currentQuestion;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
