@@ -3,4 +3,9 @@
     <string name="app_name">試験</string>
     <string name="button_main_false">偽</string>
     <string name="button_main_true">真</string>
+    <string name="button_retry">リトライ?</string>
+    <string name="progress">進捗</string>
+    <string name="right">ヽ(✿ﾟ▽ﾟ)ノ</string>
+    <string name="no">w(ﾟДﾟ)w</string>
+    <string name="Congratulation">おめでとうございます！ このテストを完了しました。あなたのスコアは</string>
 </resources>

@@ -2,4 +2,9 @@
     <string name="app_name">Quiz</string>
     <string name="button_main_false">False</string>
     <string name="button_main_true">True</string>
+    <string name="button_retry">Retry?</string>
+    <string name="progress">Progress</string>
+    <string name="right">That\'s right!</string>
+    <string name="no">Oh no!</string>
+    <string name="Congratulation">Congratulation! You have finished the quiz! Your score is</string>
 </resources>

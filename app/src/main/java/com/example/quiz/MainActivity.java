@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonFalse;
     private Button buttonTrue;
     private TextView textQuestion;
+    private TextView textCurrentQ;
     private Quiz volleyQuiz;
     public static final String TAG = "MainActivity";
     public static final String SCORE = "score";
@@ -49,33 +50,34 @@ public class MainActivity extends AppCompatActivity {
         Quiz volleyQuiz = new Quiz(questionList);
         this.volleyQuiz = volleyQuiz;
         volleyQuiz.setScore(0);
-        WireWidegets();
-        SetLitseners();
+        wireWidegets();
+        setLitseners();
         textQuestion.setText(volleyQuiz.getQuestions(volleyQuiz.getCurrentQuestion()).getQuestionText());
+        textCurrentQ.setText(getString(R.string.progress) + ": " +volleyQuiz.getCurrentQuestion() + "/10");
+
     }
 
-    public void SetLitseners() {
+    public void setLitseners() {
         buttonTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                volleyQuiz.checkAnswer(true);
                 if (volleyQuiz.checkAnswer(true)) {
-                    Toast.makeText(MainActivity.this, "That's right!", LENGTH_SHORT ).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.right), LENGTH_SHORT ).show();
                     if (volleyQuiz.hasMoreQs()){
-                        textQuestion.setText(volleyQuiz.nextQuestion().getQuestionText());
+                        upDateQuiz();
                     }
                     else {
                         Intent scoreIntent =
                                 new Intent(MainActivity.this, Score.class);
-                        scoreIntent.putExtra("Score", volleyQuiz.getScore());
+                        scoreIntent.putExtra(SCORE, volleyQuiz.getScore());
                         startActivity(scoreIntent);
                         finish();
                     }
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Oh no!", LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.no), LENGTH_SHORT).show();
                     if (volleyQuiz.hasMoreQs()) {
-                        textQuestion.setText(volleyQuiz.nextQuestion().getQuestionText());
+                        upDateQuiz();
                     }
                     else {
                         Intent scoreIntent =
@@ -90,11 +92,10 @@ public class MainActivity extends AppCompatActivity {
         buttonFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                volleyQuiz.checkAnswer(false);
                 if (volleyQuiz.checkAnswer(false)) {
-                    Toast.makeText(MainActivity.this, "That's right!", LENGTH_SHORT ).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.right), LENGTH_SHORT ).show();
                     if (volleyQuiz.hasMoreQs()){
-                        textQuestion.setText(volleyQuiz.nextQuestion().getQuestionText());
+                        upDateQuiz();
                     }
                     else {
                         Intent scoreIntent =
@@ -105,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Oh no!", LENGTH_SHORT ).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.no), LENGTH_SHORT ).show();
                     if (volleyQuiz.hasMoreQs()){
-                        textQuestion.setText(volleyQuiz.nextQuestion().getQuestionText());
+                        upDateQuiz();
                     }
                     else {
                         Intent scoreIntent =
@@ -122,10 +123,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void WireWidegets() {
+    public void wireWidegets() {
         buttonFalse = findViewById(R.id.button_main_false);
         buttonTrue = findViewById(R.id.button_main_ture);
         textQuestion = findViewById(R.id.textview_center_question);
+        textCurrentQ = findViewById(R.id.textView_progress);
     }
 
     // reading the text file from
@@ -144,6 +146,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return outputStream.toString();
+    }
+
+    public void upDateQuiz() {
+        textQuestion.setText(volleyQuiz.nextQuestion().getQuestionText());
+        textCurrentQ.setText(getString(R.string.progress) + ": " +volleyQuiz.getCurrentQuestion() + "/10");
     }
 
 

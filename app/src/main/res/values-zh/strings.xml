@@ -3,4 +3,9 @@
     <string name="button_main_false">否</string>
     <string name="button_main_true">是</string>
     <string name="app_name">测验</string>
+    <string name="button_retry">重试?</string>
+    <string name="progress">进展</string>
+    <string name="right">没错！</string>
+    <string name="no">可惜了。。</string>
+    <string name="Congratulation">恭喜！你完成了这个测验，你的分数是</string>
 </resources>
